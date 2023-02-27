@@ -41,9 +41,9 @@ def upload():
         ))
 
         flash('File Saved', 'success')
-        return redirect(url_for('upload')) # Update this to redirect the user to a route that displays all uploaded image files
+        return redirect(url_for('home')) # Update this to redirect the user to a route that displays all uploaded image files
 
-    return render_template('upload.html', form=form)
+    return render_template('upload.html', form=uploadform)
 
 
 @app.route('/login', methods=['POST', 'GET'])
@@ -70,19 +70,21 @@ def login():
         # You will need to import the appropriate function to do so.
         # Then store the result of that query to a `user` variable so it can be
         # passed to the login_user() method below.
-            flash('Logged in successfully.', 'success')
         # Gets user id, load into session
-        login_user(user)
+            login_user(user)
 
         # Remember to flash a message to the user
-        flash('Logged in successfully.', 'success')
-        return redirect(url_for("upload"))  # The user should be redirected to the upload form instead
-    #
-        # flash('Username or Password is incorrect', 'danger')
+            flash('Logged in successfully.', 'success')
+            return redirect(url_for("upload"))  # The user should be redirected to the upload form instead
+        else:
+            flash('Username or Password is incorrect', 'danger')
     flash_errors(form)
-    return render_template("upload.html", form=form)
+    return render_template("login.html", form=form)
 
 # user_loader callback. This callback is used to reload the user object from
+@login_manager.unauthorized_handler
+def unauthorized_callback():
+    return redirect(url_for("login"))
 # the user ID stored in the session
 @login_manager.user_loader
 def load_user(id):
