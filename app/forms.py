@@ -14,4 +14,4 @@ class UploadForm(FlaskForm):
         FileRequired(),
         FileAllowed(['jpg', 'png'], 'Images Only!')
     ])
-    description = StringField('Description', validators=[InputRequired()])
+    # description = StringField('Description', validators=[InputRequired()])
