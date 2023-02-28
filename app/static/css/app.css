@@ -18,3 +18,29 @@ body {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+
+.album_container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0px auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.photo_container {
+    margin: 10px;
+    padding: 10px;
+    background-color: rgb(243, 65, 0);
+    max-width: calc(50% - 40px);
+    flex-basis: 200px;
+    flex-grow: 0.1;
+    align-items: center;
+}
+
+.photos {
+    display: block;
+    height: 250px;
+    width: 250px;
+}
